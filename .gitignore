@@ -1,0 +1,9 @@
+# Arquivos de ambiente
+.env
+
+# Arquivos de anotações
+anotacao.txt
+como testar.txt
+
+# Pasta de dependências
+node_modules

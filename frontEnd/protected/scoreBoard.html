@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Pontuação</title>
+
+    <link rel="stylesheet" href="./menuHamburger/navegacao.css">
+    <link rel="stylesheet" href="./main.css">
+
+    <!-- <style>
+        #main {
+            background-color: #175c43;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: transparent;
+            border: 2px solid #fff;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        th, td {
+            padding: 15px 25px;
+            border: 1px solid #fff;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        td:nth-child(2) {
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .stars {
+            color: gold;
+            font-size: 1.5rem;
+        }
+    </style> -->
+</head>
+<body>
+       
+    <nav class="wraperNavegacao" id="wraperNavegacao">
+        <p class="linkMenu menuHamburger" id="idMenuHamburger">&#9776;</p>
+        <ul class="ulMenu" id="ulMenu">
+            <a class="linkMenu" href="http://localhost:3000/public/index.html"><li class="listMenu">Home</li></a>
+            <a class="linkMenu" href="http://localhost:3000/pr/scoreBoard.html"><li class="listMenu">Placar</li></a>
+            <a class="linkMenu" href="http://localhost:3000/pr/regulamento.html"><li class="listMenu">Regulamento</li></a>
+            <!-- <a class="linkMenu" href="http://localhost:3000/public/logar.html"><li class="listMenu">Logar</li></a> -->
+        </ul>
+    </nav>
+    
+    <main id="main">
+        <h1>Tabela de Pontuação</h1>
+    
+        <div id="tabela-container"></div>        
+    </div>
+    
+    <script type="module" src="./scoreBoard.js"></script>
+    <script type="module" src="./menuHamburger/navegacao.js"></script>
+    
+</body>
+</html>

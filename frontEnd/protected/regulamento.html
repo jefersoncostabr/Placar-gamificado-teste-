@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Pontuação</title>
+
+    <link rel="stylesheet" href="./menuHamburger/navegacao.css">
+    <link rel="stylesheet" href="./main.css">
+    
+</head>
+<body>
+    <!-- menu hamburger -->
+    <nav class="wraperNavegacao" id="wraperNavegacao">
+        <p class="linkMenu menuHamburger" id="idMenuHamburger">&#9776;</p>
+        <ul class="ulMenu" id="ulMenu">
+            <a class="linkMenu" href="http://localhost:3000/public/index.html"><li class="listMenu">Home</li></a>
+            <a class="linkMenu" href="http://localhost:3000/pr/scoreBoard.html"><li class="listMenu">Placar</li></a>
+            <a class="linkMenu" href="http://localhost:3000/pr/regulamento.html"><li class="listMenu">Regulamento</li></a>
+            <!-- <a class="linkMenu" href="http://localhost:3000/public/logar.html"><li class="listMenu">Logar</li></a> -->
+        </ul>
+    </nav>
+    
+    <main id="main">
+        <h1>Regulamento</h1>
+        <p>Como obter pontuação</p>
+        <ul id="ulRegulamento">
+           
+        </ul>
+    </main>
+        
+    <script type="module" src="./menuHamburger/navegacao.js"></script>
+    <script>
+        const regulamento = 
+            [
+                'Para cada aula frequentada, o usuário recebe 2 pontos.',
+                'Para cada treino realizado, o usuário recebe 1 ponto.',
+                'Para cada treino postado, o usuário recebe 1 ponto.'
+            ];
+        const ulRegulamento = document.getElementById('ulRegulamento');
+
+        regulamento.map((item) => {
+        const li = document.createElement('li');
+        li.textContent = item; // ou use item.nome, item.descricao, etc.
+        ulRegulamento.appendChild(li);
+        });
+
+    </script>
+
+</body>
+</html>
