@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 // import dotenv from 'dotenv';
 
 // dotenv.config();
@@ -14,11 +14,13 @@ import mongoose from "mongoose";
 //     }
 // }
 
-const dbConnectionString = process.env.DB_CONNECTION_STRING;
+import mongoose from "mongoose";
+
+const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
 
 async function conectaNaDatabase() {
   try {
-    mongoose.connect(dbConnectionString, {
+    mongoose.connect(DB_CONNECTION_STRING, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
