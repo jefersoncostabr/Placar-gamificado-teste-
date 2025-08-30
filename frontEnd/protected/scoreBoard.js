@@ -9,7 +9,7 @@
     async function getArtistas() {
         const urlBase = 'https://placar-gamificado-teste.onrender.com';
         try {
-            const response = await fetch(urlBase + 'usArtistas/artistas');
+            const response = await fetch(urlBase + '/usArtistas/artistas');
             const data = await response.json();
             return data;
         } catch (error) {
