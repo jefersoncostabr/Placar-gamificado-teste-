@@ -61,8 +61,9 @@
 
         const tdPontos = document.createElement("td");
         tdPontos.textContent = item.frequencia + item.drill + item.extra;
-        tdPontos.style.color = "#FFD84B";
-        tdPontos.style.fontWeight = "bold";
+        tdPontos.id = "tdPontos";
+        // tdPontos.style.color = "#FFD84B";
+        // tdPontos.style.fontWeight = "bold";
         tr.appendChild(tdPontos);
 
         tabela.appendChild(tr);

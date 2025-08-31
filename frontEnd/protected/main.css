@@ -26,6 +26,7 @@ table {
 th, td {
     padding: 15px 25px;
     border: 1px solid #fff;
+    width:fit-content;
 }
 
 th {
@@ -37,10 +38,15 @@ td:nth-child(1) {
     /* font-size: 1.4rem; */
 }
 
-.stars {
+#tdPontos {
+    color: #FFD84B;
+    font-weight: bold;
+}
+
+/* .stars {
     color: gold;
     font-size: 1.5rem;
-}
+} */
 
 @media (max-width: 393px) {}
   
