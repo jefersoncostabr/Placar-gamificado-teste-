@@ -32,9 +32,9 @@ th {
     font-weight: bold;
 }
 
-td:nth-child(2) {
+td:nth-child(1) {
     font-weight: bold;
-    font-size: 1.4rem;
+    /* font-size: 1.4rem; */
 }
 
 .stars {
