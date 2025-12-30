@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     res.send('API de autenticação com Express e bcrypt funcionando!');
 });
 
-router.get('rotas', (req, res) => {// urlBase + /rotas
+router.get('/rotas', (req, res) => {// urlBase + /rotas
     const PORT = process.env.PORT || 3000;// se não tiver a var de ambiente PORT usa 3000
     const listaMsgRotas = [
         `Url base quando no render: https://placar-gamificado-teste.onrender.com\n`,
