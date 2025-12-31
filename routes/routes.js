@@ -1,11 +1,6 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import routerArtistas from './routesArtistas.js';
 // import routerLancamentos from './routesLancamentos.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
@@ -24,6 +19,7 @@ router.get('/rotas', (req, res) => {// urlBase + /rotas
         `http://localhost:${PORT}/public/index.html\n`,
         `http://localhost:${PORT}/pr/regulamento.html\n`,
         `http://localhost:${PORT}/pr/scoreBoard.html\n`,
+        `http://localhost:${PORT}/pr/scoreboardadm.html (ADM)\n`,
         `http://localhost:${PORT}/usArtistas\n`,
         `http://localhost:${PORT}/usArtistas/artistas\n`,
         `http://localhost:${PORT}/usArtistas/adms\n`,
@@ -39,8 +35,8 @@ router.get('/rotas', (req, res) => {// urlBase + /rotas
 });
 
 // rota pública c acesso a arquivos estáticos
-router.use("/public", express.static(path.join(__dirname, '../frontEnd/public')));
-router.use("/pr", express.static(path.join(__dirname, '../frontEnd/protected')));
+router.use("/public", express.static("frontEnd/public"));
+router.use("/pr", express.static("frontEnd/protected"));
 
 router.use('/usArtistas', routerArtistas);// definidas em arquivo separado
 // para acessar estas rotas deve se usar /usArtistas antes da rota específica

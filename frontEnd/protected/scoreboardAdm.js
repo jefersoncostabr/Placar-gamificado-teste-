@@ -13,50 +13,7 @@ const bcrypt = window.dcodeIO.bcrypt;
 const senhaHash = "$2b$10$5BklOb5zNeXiClXaxkmmH.UJR.vGTI6xD2RoEDAr.1MOkga/tzrAi"
 ; // Substitua pelo seu hash real
 
-async function solicitarSenha() {
-    return new Promise((resolve) => {
-        // Cria o fundo escuro
-        const overlay = document.createElement('div');
-        overlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; display:flex; justify-content:center; align-items:center; font-family:sans-serif;';
-        
-        // Cria a caixa do modal
-        const modal = document.createElement('div');
-        modal.style.cssText = 'background:white; padding:25px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); text-align:center;';
-        
-        const titulo = document.createElement('h3');
-        titulo.textContent = 'Área Restrita';
-        titulo.style.margin = '0 0 15px 0';
-        
-        // Campo de senha (type="password" é o que oculta os caracteres)
-        const input = document.createElement('input');
-        input.type = 'password';
-        input.placeholder = 'Senha';
-        input.style.cssText = 'padding:10px; border:1px solid #ddd; border-radius:4px; width:200px; margin-bottom:15px; font-size:16px; display:block;';
-        
-        const btn = document.createElement('button');
-        btn.textContent = 'Acessar';
-        btn.style.cssText = 'padding:10px 20px; background:#007bff; color:white; border:none; border-radius:4px; cursor:pointer; font-size:16px; width:100%;';
-        
-        modal.appendChild(titulo);
-        modal.appendChild(input);
-        modal.appendChild(btn);
-        overlay.appendChild(modal);
-        document.body.appendChild(overlay);
-        
-        input.focus();
-        
-        const enviar = () => {
-            const valor = input.value;
-            document.body.removeChild(overlay);
-            resolve(valor);
-        };
-        
-        btn.onclick = enviar;
-        input.onkeydown = (e) => { if(e.key === 'Enter') enviar(); };
-    });
-}
-
-const senha = await solicitarSenha();
+const senha = prompt("Digite a senha de administrador:");
 if (!senha || !bcrypt.compareSync(senha, senhaHash)) {
     alert("Senha incorreta!");
     window.location.href = "/";
