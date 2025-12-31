@@ -1,13 +1,19 @@
 
 import express from 'express';
+import bcrypt from 'bcrypt';
 import artista from '../src/models/artistas.js';
 
 const routerArtistas = express.Router();
 
+// ***** Todas as rotas que usam routerArtistas devem usar URLbase+/usArtistas+<Resto da rota> *****
+
 // Configuração de CORS para permitir requisições de outras origens
 routerArtistas.use((req, res, next) => { 
-    // res.header("Access-Control-Allow-Origin", "https://placar-gamificado-teste.onrender.com", "http://localhost:3000"); // Permite qualquer origem.
-    res.header("Access-Control-Allow-Origin", "*"); // Permite qualquer origem.
+    const allowedOrigins = ['http://localhost:3000', 'https://placar-gamificado-teste.onrender.com'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin);
+    }
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-api-key");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     
@@ -18,12 +24,19 @@ routerArtistas.use((req, res, next) => {
 });
 
 // Middleware de proteção simples
-const verificarPermissao = (req, res, next) => {
+const verificarPermissao = async (req, res, next) => {
     const apiKey = req.headers['x-api-key'];
-    // Em produção, use variáveis de ambiente (process.env.API_SECRET)
-    if (apiKey === 'teste1234') {
-        next();
-    } else {
+    const apiHash = process.env.API_KEY_HASH;
+
+    if (!apiKey || !apiHash) {
+        return res.status(403).json({ message: 'Acesso negado: Credenciais ausentes ou erro de configuração.' });
+    }
+
+    try {
+        const match = await bcrypt.compare(apiKey, apiHash);
+        if (match) return next();
+        throw new Error('Senha incorreta');
+    } catch (error) {
         console.warn('Acesso negado: Credenciais inválidas.');
         res.status(403).json({ message: 'Acesso negado: Credenciais inválidas.' });
     }
@@ -32,7 +45,6 @@ const verificarPermissao = (req, res, next) => {
 // GET mais recente (Mover para o topo para garantir prioridade e evitar conflitos)
 routerArtistas.get('/mais-recente',verificarPermissao, async (req, res) => { // http://localhost:porta/usArtistas/mais-recente
     try {
-        console.log('Buscando artista mais recente');
         // .sort({ _id: -1 }) ordena do ID mais novo para o mais antigo
         const artistaRecente = await artista.findOne().sort({ _id: -1 });
         
@@ -42,8 +54,6 @@ routerArtistas.get('/mais-recente',verificarPermissao, async (req, res) => { // 
 
         // O _id do MongoDB possui a data de criação embutida. Podemos extraí-la assim:
         const dataCriacao = artistaRecente._id.getTimestamp();
-        console.log('Data retornada (UTC):', dataCriacao);
-        console.log('Data formatada (BR):', dataCriacao.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }));
 
         // Convertemos o documento do Mongoose para objeto simples e adicionamos a data
         res.status(200).json({ ...artistaRecente.toObject(), dataCriacao });

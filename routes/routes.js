@@ -5,7 +5,7 @@ import routerArtistas from './routesArtistas.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send('API de autenticação com Express e bcrypt funcionando!');
+    res.send('API funcionando!');
 });
 
 router.get('/rotas', (req, res) => {// urlBase + /rotas
@@ -37,7 +37,7 @@ router.get('/rotas', (req, res) => {// urlBase + /rotas
 router.use("/public", express.static("frontEnd/public"));
 router.use("/pr", express.static("frontEnd/protected"));
 
-router.use('/usArtistas', routerArtistas);
+router.use('/usArtistas', routerArtistas);// definidas em arquivo separado
 // para acessar estas rotas deve se usar /usArtistas antes da rota específica
 
 export default router;

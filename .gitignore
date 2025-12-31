@@ -7,3 +7,6 @@ como testar.txt
 
 # Pasta de dependências
 node_modules
+
+#Gerador de hash
+bcrypt.js

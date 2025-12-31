@@ -2,6 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import router from './routes/routes.js';
+import rotasAdmin from './routes/rotasAdmin.js';
 import conectaNaDatabase from './src/config/dbConnect.js';
 
 dotenv.config();// pega as var de ambiente do arquivo .env
@@ -15,6 +16,7 @@ conexao.once('open', () => console.log('Conexão com o mongoDB feita com sucesso
 const app = express();
 app.use(express.json());
 app.use('/', router); // Rota teste
+app.use('/', rotasAdmin); // Rotas administrativas
 // app.use('/', routerArtistas);
 
 const PORT = process.env.PORT || 3000;// se não tiver a var de ambiente PORT usa 3000
